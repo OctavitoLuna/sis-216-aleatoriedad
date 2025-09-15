@@ -1,0 +1,475 @@
+:root{
+  --turquoise:#4fb7b3;     /* barra superior */
+  --cream:#efe7db;         /* cuerpo claro */
+  --orange:#ee7b53;        /* bloques de sección */
+  --ink:#2d2a26;           /* texto principal */
+  --ink-soft:#615b55;      /* texto secundario */
+  --badge:#2b2a2a;         /* fondo del badge central */
+  --white:#ffffff;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; } /* scroll suave a las secciones */
+body{
+  margin:0;
+  color:var(--ink);
+  background:#d3d3d3; /* marco gris como la maqueta */
+  font-family:"Josefin Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.container{
+  max-width:1120px;        /* ↑ antes 980px: área de lectura más ancha */
+  margin:0 auto;
+  background:var(--cream);
+  min-height:60vh;
+  padding:2rem 1.25rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* NAVBAR (cambiado a Grid para reservar el centro) */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:grid;
+  grid-template-columns: 1fr auto 1fr; /* izq | centro | der */
+  align-items:center;
+  column-gap:50px;                      /* espacio a ambos lados del badge */
+  background:var(--turquoise);
+  border-bottom:1px solid rgba(0,0,0,.08);
+  height:84px;
+  padding:0 24px;                        /* margen lateral general */
+}
+
+.nav-group{
+  display:flex;
+  gap:28px;                              /* ↑ antes 24px */
+  align-items:center;
+  padding:0 1rem;
+}
+.nav-group.left{  justify-self:end;   justify-content:flex-end;  }
+.nav-group.right{ justify-self:start; justify-content:flex-start; }
+
+.nav-link{
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--white);
+  padding:10px 8px;
+  opacity:.95;
+  transition:opacity .2s, transform .2s;
+}
+.nav-link:hover{ opacity:1; transform:translateY(-1px); }
+.nav-link.disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* Badge central (sin absolute) */
+.brand{
+  justify-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:84px;
+  height:84px;
+  background:var(--badge);
+  border-radius:999px;
+  box-shadow:0 4px 0 rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.25);
+  border:3px solid rgba(0,0,0,.25);
+}
+.brand-link{
+  font-family:"Shrikhand", cursive;
+  color:var(--white);
+  text-decoration:none;
+  font-size:1.05rem;
+  letter-spacing:.06em;
+}
+
+/* Secciones “hero” y bloques con vibe retro */
+.hero{
+  background:var(--turquoise);
+  color:var(--white);
+  margin:0; /* ocupar todo el ancho interno del container */
+  padding:3.2rem 1.25rem 2.4rem;
+  text-align:center;
+  border-radius:6px;
+}
+.hero-title{
+  font-family:"Shrikhand", cursive;
+  font-size:3rem;
+  margin:0 0 .25rem 0;
+  letter-spacing:.06em;
+}
+.hero-sub{
+  margin:.25rem auto 0;
+  max-width:720px;
+  font-weight:600;
+  opacity:.95;
+}
+
+.about{
+  padding:2rem 1.25rem;
+  background:var(--cream);
+}
+.about h2{
+  font-family:"Shrikhand", cursive;
+  letter-spacing:.04em;
+  margin-top:0;
+}
+
+.portfolio-intro{
+  background:var(--orange);
+  color:var(--white);
+  padding:1.75rem 1.25rem 2rem;
+}
+.pill-list{
+  list-style:none;
+  padding:0; margin:.75rem 0 0;
+  display:flex; gap:.5rem; flex-wrap:wrap;
+}
+.pill-list li{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  padding:.4rem .8rem;
+  font-weight:600;
+}
+
+/* Links de pastillas del índice (anclas internas) */
+.pill-link{
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  display:inline-block;
+  padding:.4rem .8rem;
+}
+.pill-link:hover{ text-decoration:underline; }
+
+/* Enlace inline a páginas de router */
+.inline-link{
+  text-decoration:none;
+  font-weight:700;
+  border-bottom:2px solid currentColor;
+}
+.inline-link:hover{ opacity:.85; }
+
+/* Secciones ancladas: margen de scroll bajo navbar fijo */
+.page-shell{
+  padding:2.25rem 1rem;   /* ↑ un poco más de respiración */
+  scroll-margin-top:96px; /* para que no quede tapado por el navbar */
+}
+.muted{ color:var(--ink-soft); }
+
+.footer{
+  text-align:center;
+  padding:1.25rem;
+  font-size:.9rem;
+  color:var(--ink-soft);
+}
+
+/* ---------------- Responsividad ---------------- */
+@media (max-width: 1024px){
+  .nav{ column-gap:96px; }
+  .nav-group{ gap:20px; }
+}
+
+@media (max-width: 900px){
+  .container{ max-width:92vw; }
+  .nav{ height:72px; column-gap:72px; }
+  .brand{ width:72px; height:72px; }
+  .nav-link{ font-size:.9rem; }
+}
+
+@media (max-width: 720px){
+  .nav{ column-gap:56px; }
+  .brand{ width:64px; height:64px; }
+  .nav-group{ gap:14px; }
+  .nav-link{ font-size:.85rem; letter-spacing:.06em; }
+  .hero-title{ font-size:2.6rem; }
+}
+
+@media (max-width: 560px){
+  .nav{ column-gap:40px; }
+  .brand{ width:56px; height:56px; }
+  .nav-group{ gap:10px; }
+  .nav-link{ font-size:.8rem; letter-spacing:.05em; }
+  .hero-title{ font-size:2.3rem; }
+}
+
+/* =============== LINEAL =============== */
+/* ===== Sub-hero (banner turquesa más compacto) ===== */
+.sub-hero{
+  background: var(--turquoise);
+  color: var(--white);
+  margin: 0 0 1rem 0;
+  padding: 2.2rem 1.25rem 1.6rem;
+  text-align: center;
+  border-radius: 6px;
+}
+.sub-hero-title{
+  font-family: "Shrikhand", cursive;
+  font-size: 2.3rem;
+  margin: 0 0 .25rem 0;
+  letter-spacing: .06em;
+}
+.sub-hero-sub{
+  margin: 0 auto;
+  max-width: 780px;
+  font-weight: 700;
+  opacity: .95;
+}
+
+/* ===== Paneles con cabecera vintage ===== */
+.panel{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.panel-header{
+  background: var(--orange);
+  color: var(--white);
+  padding: .9rem 1rem;
+}
+.panel-header.alt{
+  background: #2d2a26; /* tinta oscura para “Resultados” */
+}
+.panel-title{
+  margin: 0;
+  font-family: "Shrikhand", cursive;
+  letter-spacing: .04em;
+}
+.panel-body{
+  padding: 1rem;
+}
+
+/* ===== Formulario ===== */
+.form-grid{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap:14px;
+  align-items:end;
+}
+.field label{
+  display:block;
+  font-weight:700;
+  margin-bottom:.35rem;
+}
+.field input{
+  width:100%;
+  padding:.55rem .7rem;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.15);
+  background:#fff;
+  outline:none;
+}
+.field input:focus{
+  border-color: rgba(0,0,0,.35);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.06) inset;
+}
+.field.actions{
+  grid-column: 1 / -1;
+  display:flex;
+  gap:.75rem;
+  margin-top:.25rem;
+}
+
+/* Botones con paleta vintage */
+.btn{
+  border:0;
+  padding:.65rem 1.05rem;
+  border-radius:12px;
+  font-weight:800;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition: transform .05s ease, filter .15s ease;
+}
+.btn:active{ transform: translateY(1px); }
+.btn.primary{ background: var(--turquoise); color:#fff; }
+.btn.danger{  background: var(--orange); color:#fff; }
+.btn:hover{ filter: brightness(.96); }
+
+/* ===== Chips de parámetros ===== */
+.chips{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  margin: .6rem auto 1.2rem;
+}
+.chip{
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,.12);
+  padding: .45rem .75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ===== Tabla ===== */
+.table-wrap{
+  overflow-x:auto;
+  background:#fff;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+.retro-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+}
+.retro-table thead th{
+  text-align:left;
+  padding:.9rem .9rem;
+  background:var(--cream);
+  border-bottom:2px solid rgba(0,0,0,.1);
+  position:sticky; top:0;
+}
+.retro-table tbody td{
+  padding:.8rem .9rem;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  vertical-align:top;
+}
+.retro-table tbody tr:nth-child(even){
+  background:rgba(0,0,0,.015);
+}
+.retro-table td.op{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+/* Fila P+1 resaltada */
+.repeat-row{
+  background: rgba(238, 123, 83, 0.10) !important; /* naranja suave */
+}
+.repeat-row:hover{
+  background: rgba(238, 123, 83, 0.18) !important;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px){
+  .form-grid{ grid-template-columns: repeat(3, minmax(160px, 1fr)); }
+}
+@media (max-width: 720px){
+  .form-grid{ grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+  .sub-hero-title{ font-size: 2rem; }
+}
+@media (max-width: 560px){
+  .form-grid{ grid-template-columns: 1fr; }
+}
+
+
+
+/* Radios alineados */
+.radio-group{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:.45rem .5rem;
+  border:1px dashed rgba(0,0,0,.15);
+  border-radius:10px;
+  background:#fff;
+}
+.radio-group label{
+  display:flex; align-items:center; gap:.4rem; font-weight:700;
+}
+
+/* Nota/aviso */
+.note{
+  margin-top:.75rem;
+  padding:.6rem .8rem;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  color:var(--ink);
+}
+.note.warn{ border-color:#e0b37a; background:#fff7ec; }
+.badge-warning{
+  display:inline-block;
+  background:#e0b37a;
+  color:#3a2a14;
+  padding:.2rem .5rem;
+  border-radius:999px;
+  font-weight:800;
+  margin-right:.5rem;
+}
+
+.radio-group{
+  display:flex;
+  gap:1.25rem;
+  align-items:center;
+  justify-content:center;  /* centrado */
+  flex-wrap:wrap;
+  padding:.5rem .75rem;
+  border:1px dashed rgba(0,0,0,.15);
+  border-radius:10px;
+  background:#fff;
+}
+
+.radio-inline{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  font-weight:700;
+  white-space:nowrap;       /* evita que se parta en varias líneas */
+}
+
+
+
+
+/* Acentos de color para secciones */
+.accent-turquoise{
+  border-left: 6px solid var(--turquoise);
+  background: linear-gradient(90deg, rgba(79,183,179,.10), transparent);
+  border-radius: 10px;
+}
+.accent-orange{
+  border-left: 6px solid var(--orange);
+  background: linear-gradient(90deg, rgba(238,123,83,.12), transparent);
+  border-radius: 10px;
+}
+
+/* Títulos tipo “pastilla” */
+.title-pill{
+  display:inline-block;
+  font-family:"Shrikhand", cursive;
+  letter-spacing:.04em;
+  margin:0 0 .6rem 0;
+  padding:.25rem .8rem;
+  border-radius:999px;
+  color:#fff;
+}
+.title-pill.turquoise{ background:var(--turquoise); }
+.title-pill.orange{    background:var(--orange); }
+
+/* Subtítulos destacados */
+.subhead{
+  margin:1rem 0 .5rem;
+  padding:.35rem .6rem;
+  border-radius:6px;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.subhead.turquoise{
+  background:rgba(79,183,179,.15);
+  border-left:6px solid var(--turquoise);
+}
+.subhead.orange{
+  background:rgba(238,123,83,.15);
+  border-left:6px solid var(--orange);
+}
+.subhead.ink{
+  background:rgba(45,42,38,.08);
+  border-left:6px solid var(--ink);
+}
+
+/* Color a marcadores de listas */
+.page-shell ul li::marker{ color: var(--orange); }
+.page-shell ol li::marker{ color: var(--turquoise); font-weight:700; }
