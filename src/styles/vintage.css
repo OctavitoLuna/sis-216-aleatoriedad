@@ -473,3 +473,60 @@ body{
 /* Color a marcadores de listas */
 .page-shell ul li::marker{ color: var(--orange); }
 .page-shell ol li::marker{ color: var(--turquoise); font-weight:700; }
+
+
+
+/* ---- Ejercicios de modelado ---- */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1100px) {
+  .exercise-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .exercise-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.exercise-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  border: 1px solid var(--ink-10, rgba(0,0,0,.08));
+  background: var(--paper, #f6f1e7);
+  padding: 18px 16px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft, 0 2px 0 rgba(0,0,0,.06));
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.exercise-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0,0,0,.12);
+}
+.exercise-badge {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: .5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--accent, #d9a066);
+  color: var(--paper, #fff);
+  width: fit-content;
+}
+.exercise-title {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-80, #2b2b2b);
+}
+.exercise-cta {
+  margin-top: 14px;
+  font-size: .9rem;
+  text-decoration: underline;
+  color: var(--link, #1f6f8b);
+}
+
+
+/*Deposito fija*/

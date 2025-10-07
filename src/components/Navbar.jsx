@@ -16,7 +16,7 @@ export default function Navbar() {
       {/* Columna izquierda */}
       <nav className="nav-group left">
         <NavLink to="/lineal" className="nav-link">Lineal</NavLink>
-        <DisabledTab>Algoritmos</DisabledTab>
+        <NavLink to="/multiplicativo" className="nav-link">Multiplicativo</NavLink>
       </nav>
 
       {/* Columna central (badge) */}
@@ -26,7 +26,7 @@ export default function Navbar() {
 
       {/* Columna derecha */}
       <nav className="nav-group right">
-        <NavLink to="/multiplicativo" className="nav-link">Multiplicativo</NavLink>
+        <NavLink to="/ejercicios" className="nav-link">Ejercicios de simulacion</NavLink>
         <DisabledTab>Algoritmos</DisabledTab>
       </nav>
     </header>
