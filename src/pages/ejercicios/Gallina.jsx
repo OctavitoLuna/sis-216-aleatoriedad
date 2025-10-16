@@ -228,7 +228,7 @@ export default function Gallina() {
         </div>
       </div>
 
-      {/* Diccionario (según tu tabla) */}
+      {/* Diccionario */}
       <div className="panel">
         <div className="panel-header alt">
           <h3 className="panel-title">Diccionario de variables</h3>
@@ -269,19 +269,58 @@ export default function Gallina() {
           <div className="form-grid">
             <div className="field">
               <label>Número máximo de días (NMD)</label>
-              <input type="number" min={1} value={nmd} onChange={(e) => setNmd(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                step={1}
+                value={nmd}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setNmd(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Precio venta unitario huevo (PVUH)</label>
-              <input type="number" min={0} step="0.01" value={pvuh} onChange={(e) => setPvuh(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={pvuh}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setPvuh(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Precio venta unitario pollo (PVUP)</label>
-              <input type="number" min={0} step="0.01" value={pvup} onChange={(e) => setPvup(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={pvup}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setPvup(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Cantidad de simulaciones (1–30)</label>
-              <input type="number" min={1} max={30} value={simCount} onChange={(e) => setSimCount(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                max={30}
+                step={1}
+                value={simCount}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setSimCount(v);
+                }}
+              />
             </div>
           </div>
 

@@ -238,23 +238,71 @@ export default function Tienda() {
           <div className="form-grid">
             <div className="field">
               <label>Número máximo de horas (NMH)</label>
-              <input type="number" min={1} value={nmh} onChange={(e) => setNmh(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                step={1}
+                value={nmh}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setNmh(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Costo unitario de adquisición (CUA)</label>
-              <input type="number" min={0} step="0.01" value={cua} onChange={(e) => setCua(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={cua}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setCua(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Precio de venta unitario (PVU)</label>
-              <input type="number" min={0} step="0.01" value={pvu} onChange={(e) => setPvu(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={pvu}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setPvu(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Costo fijo diario (CF)</label>
-              <input type="number" min={0} step="0.01" value={cf} onChange={(e) => setCf(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={cf}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setCf(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Cantidad de simulaciones (1–30)</label>
-              <input type="number" min={1} max={30} value={simCount} onChange={(e) => setSimCount(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                max={30}
+                step={1}
+                value={simCount}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setSimCount(v);
+                }}
+              />
             </div>
           </div>
 

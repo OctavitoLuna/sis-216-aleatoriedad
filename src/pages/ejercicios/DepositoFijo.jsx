@@ -142,26 +142,50 @@ export default function DepositoFijo() {
               <label>Capital inicial (Bs)</label>
               <input
                 type="number"
+                min="0"
                 value={capital0}
-                onChange={(e) => setCapital0(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setCapital0(v);
+                }}
                 placeholder="Ej: 10000"
               />
+              {capital0 !== "" && Number(capital0) < 0 && (
+                <div className="note warn" style={{ marginTop: 6 }}>
+                  No se permiten valores negativos.
+                </div>
+              )}
             </div>
             <div className="field">
               <label>Tasa de interés anual (%)</label>
               <input
                 type="number"
+                min="0"
                 value={tasaAnualPct}
-                onChange={(e) => setTasaAnualPct(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setTasaAnualPct(v);
+                }}
                 placeholder="Ej: 4.5"
               />
+              {tasaAnualPct !== "" && Number(tasaAnualPct) < 0 && (
+                <div className="note warn" style={{ marginTop: 6 }}>
+                  No se permiten valores negativos.
+                </div>
+              )}
             </div>
             <div className="field">
               <label>Tiempo (años)</label>
               <input
                 type="number"
+                min="0"
+                step="1"
                 value={anios}
-                onChange={(e) => setAnios(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setAnios(v);
+                }}
                 placeholder="Ej: 10"
               />
             </div>

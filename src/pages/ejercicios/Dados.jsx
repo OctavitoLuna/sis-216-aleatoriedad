@@ -231,19 +231,58 @@ export default function Dados() {
           <div className="form-grid">
             <div className="field">
               <label>Número máximo de juegos (NMJ)</label>
-              <input type="number" min={1} value={nmj} onChange={(e) => setNmj(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                step={1}
+                value={nmj}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setNmj(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Precio unitario del juego (PUJ)</label>
-              <input type="number" min={0} step="0.01" value={puj} onChange={(e) => setPuj(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={puj}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setPuj(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Costo si suma 7 (CUS7)</label>
-              <input type="number" min={0} step="0.01" value={cus7} onChange={(e) => setCus7(e.target.value)} />
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                value={cus7}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || Number(v) >= 0) setCus7(v);
+                }}
+              />
             </div>
             <div className="field">
               <label>Cantidad de simulaciones</label>
-              <input type="number" min={1} max={30} value={simCount} onChange={(e) => setSimCount(e.target.value)} />
+              <input
+                type="number"
+                min={1}
+                max={30}
+                step={1}
+                value={simCount}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  // Solo enteros no negativos (permitir vacío)
+                  if (v === "" || /^\d+$/.test(v)) setSimCount(v);
+                }}
+              />
             </div>
           </div>
 
